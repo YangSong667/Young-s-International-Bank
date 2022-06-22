@@ -1,0 +1,155 @@
+void add01()//管理员增加新用户 在链表中添加一个数据 从尾部添加
+{
+	char m[20],n[20];
+	atm * temp = (struct atm *)malloc(sizeof(struct atm));//创建一个节点
+	//节点成员进行赋值
+	struct atm * dtemp =g_Head;   //重新定义一个指针记住头
+	printf("|  提示：请分别输入您新建用户的账户名和账户密码                      | \n");Sleep(50);
+	scanf("%s %s",m ,n );
+	getchar();
+	while(dtemp!=NULL)
+	{
+		if(strcmp(dtemp->name,m)==0||strcmp("hp",m)==0)
+		{
+			printf("|      提示：用户注册失败                                            | \n");Sleep(50);
+			printf("|      原因：该帐户id已经被占用                                      | \n");Sleep(50);
+			return ;
+		}
+		dtemp=dtemp->pnext ;
+	}
+	strcpy(temp->name ,m);
+	strcpy(temp->key  ,n);
+	temp->freeze =0;//可用状态为可用
+	temp->money  =0;//余额为0
+	temp->pnext =NULL;//指向空
+	if (NULL==g_Head||NULL==g_End)    //排除只有头尾的情况
+	{
+		g_Head = temp;              //链表为空，新节点即是头也是尾
+		g_End = temp;
+	}
+	else
+	{
+		g_End->pnext =temp;       //新节点下一个指向尾
+		g_End = temp;            //新节点变成尾
+	}
+	printf("|      提示：用户添加成功                                            | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void del()//管理员注销用户操作
+{
+	char i[20]={0};
+	struct atm *atemp = g_Head;           //当前节点的上一个
+	struct atm *btemp = atemp->pnext ;    //当前节点
+	struct atm *ctemp = btemp->pnext ;    //当前节点的下一个
+	struct atm *first=g_Head ;      //冲在前面的指针
+	struct atm *temp;             //cun
+	int sign=0;
+	printf("|        请输入要注销的账户名称：                                    | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+	scanf("%s",i);
+	getchar();
+
+	while(first->pnext!=NULL)
+	{
+		if(strcmp(first->pnext->name ,i)==0)
+		{
+			sign++;
+
+			temp = first->pnext;
+			first->pnext =temp->pnext;
+
+			free(temp);
+			break;
+		}
+		first=first->pnext ;        //前仆后继
+	}
+	while(btemp!=NULL)
+	{
+		if(strcmp(btemp->name ,i)==0 && btemp->pnext ==NULL)
+		{
+			atemp->pnext =NULL;
+			sign++;
+			free(btemp);
+			break;
+	}
+		else if( strcmp(btemp->name ,i)==0 )  //不是头尾的情况
+		{
+			atemp->pnext =ctemp;         //跳过当前节点，将上一个直接指向下一个
+			sign++;
+
+			free(btemp);
+			break;
+		}
+		atemp=atemp->pnext ;
+		btemp=btemp->pnext ;
+		ctemp=ctemp->pnext ;
+	}	
+	if(sign!=0)
+	{
+		printf("|        提示：                                                      | \n");Sleep(50);
+		printf("|             用户注销成功                                           | \n");Sleep(50);
+		printf("|                                                                    | \n");Sleep(50);
+	}
+	else
+	{
+		printf("|        提示：                                                      | \n");Sleep(50);
+		printf("|             用户注销失败                                           | \n");Sleep(50);
+		printf("|        原因：                                                      | \n");Sleep(50);
+		printf("|             该用户不存在                                           | \n");Sleep(50);
+	}
+	return ;
+}
+
+void freeze()//管理员冻结板块
+{
+	int i=-1;
+	char k[20];
+	struct atm * ctemp =g_Head;   //重新定义一个指针记住头
+	printf("|   请输入要冻结的账户名称                                           | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+	scanf("%s",k);
+	getchar();
+	while(ctemp!=NULL)
+	{
+		if((strcmp(k,ctemp->name)==0))
+		{
+			if(ctemp->freeze ==0)
+			{
+				printf("|   提示：该帐户当前状态为正常，是否冻结 ？                         | \n");Sleep(50);
+				printf("|        【1】冻结该账户                                            | \n");Sleep(50);
+				printf("|        【2】放弃操作返回上一级                                    | \n");Sleep(50);
+				scanf("%d",&i);
+				getchar();
+				switch(i)
+				{
+				case 1:ctemp->freeze =1;
+					printf("|   提示：操作成功                                                  | \n");Sleep(50);
+					break;
+				case 2:break;
+				}
+			}
+			else
+			{
+				printf("|   提示：该帐户当前状态为冻结，是否解冻 ？                         | \n");Sleep(50);
+				printf("|        【1】解冻该账户                                            | \n");Sleep(50);
+				printf("|        【2】放弃操作返回上一级                                    | \n");Sleep(50);
+				scanf("%d",&i);
+				getchar();
+				switch(i)
+				{
+				case 1:ctemp->freeze =0;
+					printf("|   提示：操作成功                                                  | \n");Sleep(50);
+					break;
+				case 2:break;
+				}
+			}
+		}	
+		if(ctemp==NULL)
+		{
+			printf("|   提示：该账户不存在                                              | \n");Sleep(50);
+			printf("|         请核对后再试                                              | \n");Sleep(50);
+		}
+		ctemp=ctemp->pnext ;
+	}
+	return ;
+}
