@@ -1,0 +1,322 @@
+void choose(char m[20])//用户修改密码板块
+{
+	struct atm * atemp=g_Head;
+	char i[20],j[20];
+	show06();
+	scanf("%s",i);
+	getchar();
+	show07();
+	scanf("%s",j);
+	getchar();
+	if(strcmp(i,j)==0)
+	{
+		while(atemp!=NULL)
+		{
+			if(strcmp(atemp->name ,m)==0)
+			{
+				strcpy(atemp->key,i);//修改密码
+				show09();
+			}
+			atemp=atemp->pnext ;
+		}
+	}
+	else 
+	{
+		printf("|   提示： 修改密码操作中两次输入密码不一致                          | \n");Sleep(1000);  
+		printf("|          即将返回用户操作界面                                      | \n");Sleep(1000);
+		show04();
+	}
+}
+void look(char m[20])//用户余额查询板块
+{
+	struct atm * atemp=g_Head;
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name )==0)
+		{
+			printf("|   您好：                                                          | \n");Sleep(50);
+			printf("|       您的账户余额为：%d元                                          \n",atemp->money);Sleep(50);
+			printf("|                                                                   | \n");Sleep(50);
+			show10();
+			break;
+		}
+		atemp=atemp->pnext ;
+	}
+}
+void in(char m[20])//用户存款操作
+{
+	struct atm * atemp=g_Head;
+	int i=-1,j=-1;
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name )==0)
+		{
+			show11();
+			scanf("%d",&i);
+			getchar();
+			atemp->money =atemp->money +i;
+			show12();
+			break;
+		}
+		atemp=atemp->pnext ;
+	}
+}
+void out(char m[20])//用户取款操作
+{
+	int i;
+	struct atm * atemp=g_Head;
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name)==0)
+		{
+			printf("%s",atemp->name);
+			show13();
+			scanf("%d",&i);
+			if(atemp->money<i)
+			{
+				printf("|        您的帐户余额不足，请您查询或存款后在进行此操作              | \n");Sleep(50);
+				printf("|                                                                    | \n");Sleep(50);
+				break;
+			}
+			if(atemp->money>=i)
+			{
+				atemp->money = atemp->money -i;	
+				printf("|        交易账单：                                                  | \n");Sleep(50);
+				printf("|        本次取款：%d元                                                \n",i);Sleep(50);
+				printf("|        帐户余额：%d元                                                \n",atemp->money );Sleep(50);
+				printf("|                                                                    | \n");Sleep(50);
+				printf("|        取钞完毕                                                    | \n");Sleep(50);
+				break;
+			}
+		}
+		atemp=atemp->pnext ;
+	}
+}
+void transform(char m[20])//用户转账操作
+{
+	char i[20];
+	int j;
+	struct atm * atemp=g_Head;
+	struct atm * btemp=g_Head;
+	show14();
+	scanf("%s",i);
+	getchar();
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name )==0)
+		{
+			while(btemp!=NULL)
+			{
+				if(strcmp(i,btemp->name )==0)
+				{
+					printf("|  提示：请输入转账的金额                                              | \n");Sleep(50);
+					printf("|                                                                      | \n");Sleep(50);
+					scanf("%d",&j);
+					getchar();
+					if(atemp->money >j||atemp->money ==j)
+					{
+						atemp->money =atemp->money -j;
+						btemp->money=btemp->money +j;
+						show15();
+						break;
+					}	
+					else
+					{
+						printf("|  提示：您的余额不足                                                | \n");Sleep(50);
+						printf("|        请存款或者输入较小的转账金额                                | \n");Sleep(50);
+						break;
+					}
+				}
+				btemp=btemp->pnext  ;
+			}
+			break;
+		}
+		atemp=atemp->pnext; 
+	}
+	if (atemp==NULL)//用户不存在的情况
+	{
+		show16();
+	}
+}
+void search()//用户交易记录查询
+{
+	printf("|    正在努力建设中：                                                | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+
+}
+void savetofile()//保存信息进入文件
+{
+	FILE * pfile=NULL;
+	atm * temp=g_Head;
+	char strbuf[60]={0};
+	char strscore[5];
+	char strscore1[5];
+	if(g_Head==NULL)//判断链表是否为空
+	{
+		return ;
+	}
+	pfile=fopen("D:\\杨氏国际银行重工分行\\用户数据.txt","w+");	//打开文件,读写
+	if(pfile==NULL)
+	{
+		printf("  警告：文件丢失或不存在，请检查目录");
+		return;
+	}
+	while(temp!=NULL)//操作文件指针
+	{
+		strcpy(strbuf,temp->name );
+		strcat(strbuf,",");
+		strcat(strbuf,temp->key );
+		strcat(strbuf,"+");
+		_itoa(temp->freeze,strscore,10);//将整型值转换为字符串,int十进制转化char
+		strcat(strbuf,strscore);
+		strcat(strbuf,"-");
+		_itoa(temp->money,strscore1,10);
+		strcat(strbuf,strscore1);
+		strcat(strbuf,"@");
+		fwrite(strbuf,1,strlen(strbuf),pfile);//将一个节点的所有信息转化成一个字符串
+		//fwrite("\r\n",1,strlen("\r\n"),pfile);//每写完一个换行
+		temp=temp->pnext; 
+		strcat(strbuf,"%");
+	}
+	fclose(pfile);//关闭文件
+}
+
+void redfile()//读取文件
+{
+	//建立缓冲区
+	char message[10000];
+	char a1[100],a2[100],a3[100],a4[100],a6[]={"%"};
+	int i=0,j=0,k=0,l=0,m=0,o=0;
+	int tempmoney=0;            //余额（数值不能为负）
+	int tempfreeze=0;           //账户状态(0为可用1为冻结，默认为0)
+	FILE*pfile;
+	pfile=fopen("D:\\杨氏国际银行重工分行\\用户数据.txt","rb");
+	if(NULL==pfile)
+	{
+		printf("|  警告：保存用户数据的文件丢失或不存在                              | \n");Sleep(4000);
+		printf("|                                                                    | \n");Sleep(50);
+		return;
+	}
+	while(!feof(pfile))//FEOF是文件操作指针，当该指针指向文件尾部时（数据读取完）会返回1
+	{
+
+		fscanf(pfile,"%s",message);//fscanf可以将硬盘里的数据读取到内存中
+		strcpy(a1,"hp的账户,123456,1,999@");
+		strcat(message,a6);
+		printf("原始数据是：%s\n",message);Sleep(50);
+		for(i=0;message[i]!='%';)
+		{
+			/*if(message[i]=='%')
+			{
+			break;
+			}*/
+			atm * temp = (struct atm *)malloc(sizeof(struct atm));//创建一个节点
+			if(message[i]!=',')
+			{
+				for(j=0;;j++,i++)
+				{
+					if(message[i]==',')
+					{
+						break;
+					}
+					a1[j]=message[i];
+				}
+				a1[j]='\0';
+			}
+			printf("用户账号是：%s\n",a1);Sleep(50);
+			i++;
+			if(message[i]!='+')
+			{
+				for(k=0;;k++,i++)
+				{
+					if(message[i]=='+')
+					{
+						break;
+					}
+					a2[k]=message[i];
+				}
+				a2[k]='\0';
+			}
+			printf("用户密码是：%s\n",a2);Sleep(50);
+			i++;
+			if(message[i]!='-')
+			{
+				for(l=0;;l++,i++)
+				{
+					if(message[i]=='-')
+					{
+						break;
+					}
+					a3[l]=message[i];
+				}
+				a3[l]='\0';
+			}
+			printf("用户状态是：%s\n",a3);Sleep(50);
+			i++;
+			if(message[i]!='@')
+			{
+				for(m=0;;i++,m++)
+				{
+					if(message[i]=='@')
+					{
+						break;
+					}
+					a4[m]=message[i];
+				}
+				a4[m]='\0';
+			}
+			i++;
+			printf("用户余额是：%s\n",a4);Sleep(50);
+			strcpy(temp->name ,a1);
+			strcpy(temp->key  ,a2);
+			temp->freeze =atoi(a3);
+			temp->money =atoi(a4);
+			temp->pnext =NULL;
+			if (NULL==g_Head||NULL==g_End)    //排除只有头尾的情况
+			{
+				g_Head = temp;              //链表为空，新节点即是头也是尾
+				g_End = temp;
+			}
+			else
+			{
+				g_End->pnext =temp;         //新节点下一个指向尾
+				g_End = temp;              //新节点变成尾
+			}
+		}
+		fclose(pfile);
+		break;
+	}
+}
+
+int check(char m[20],char n[20])//判断管理用户还是普通用户还是该用户不存在
+
+{	
+	struct atm * atemp =g_Head;   //重新定义一个指针记住头
+	if ((strcmp(m,"hp")==0)&&(strcmp(n,"123456")==0))//判断为管理员身份
+	{
+		return 1;
+	}
+	while(atemp!=NULL)
+	{
+		if(strcmp(atemp->name ,m)==0&&strcmp(atemp->key ,n)==0&&atemp->freeze ==0)//判断为普通用户
+		{
+			return 2;
+		}
+		if(strcmp(atemp->name ,m)==0&&strcmp(atemp->key ,n)==0&&atemp->freeze ==1)//判断为普通用户被冻结
+		{
+			return 4;
+		}
+		atemp=atemp->pnext; 
+	}
+	return 3;
+}
+void freelinklist()//释放链表
+{
+	struct atm * atemp = g_Head;
+	while(g_Head !=NULL)//在没有到达尾部的时候
+	{
+		atemp=g_Head;//记录下一节点
+		g_Head=g_Head->pnext ;//向后移动一个节点
+		free(atemp);//释放上一节点
+	}
+}
