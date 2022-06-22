@@ -1,5 +1,5 @@
 # Young-s-International-Bank
-ATM self-service system of Chongqing Institute of Technology Branch
+ATM self-service system of Chongqing Institute of Enigineering Branch
 void loading()//虚假的加载界面
 {
 	int k=1;
