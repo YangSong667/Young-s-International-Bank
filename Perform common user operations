@@ -1,0 +1,85 @@
+void show05()
+{
+
+	printf("|   提示： 密码或账户名输入错误，请核对后重新输入                    | \n");Sleep(1000);                                        
+	printf("|          即将返回登陆界面                                          | \n");Sleep(5000);
+}
+void show06()
+{
+	printf("|    请输入新密码：                                                  | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show07()
+{
+	printf("|    请再输入一次新密码：                                            | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show08()
+{
+
+}
+void show09()
+{
+	printf("|   提示： 密码修改成功                                              | \n");Sleep(1000);  
+	printf("|          请输入7退卡后重试                                         | \n");Sleep(50);
+}
+void show10()//余额部分
+{ 
+	printf("|   已返回操作界面                                                   | \n");Sleep(50);
+	printf("|          请输入指令                                                | \n");Sleep(2000);
+}
+void show11()
+{
+	printf("|  提示：请放入钞票                                                  | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show12()
+{
+	printf("|        存入成功                                                    | \n");Sleep(50);
+	printf("|  提示: 请选择要执行的操作                                          | \n");Sleep(50);
+}
+void show13()
+{
+	printf("|  提示：请输入取款金额                                              | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show14()
+{
+	printf("|  提示：请输入要转账的用户名                                        | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show15()
+{
+	printf("|        转账完毕                                                    | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show16()
+{
+	printf("|        转账失败                                                    | \n");Sleep(50);
+	printf("|        该用户不存在                                                | \n");Sleep(50);
+}
+void show17()
+{
+	printf("|      警告：您的帐户因为非法洗钱等违规操作已经被冻结                 | \n");Sleep(50);
+	printf("|            请联系管理员解冻                                        | \n");Sleep(50);
+	printf("|            系统将于五秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于四秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于三秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于二秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于一秒钟后返回登陆界面                            | \n");Sleep(1000);
+}
+void show18()
+{
+	printf("|        搜索失败                                                    | \n");Sleep(50);
+	printf("|        该用户不存在                                                | \n");Sleep(50);
+}
+typedef  struct atm  //节点结构体
+{
+	char name[20];        //用户名
+	char key[20];              //六位数的密码 
+	int money;            //余额（数值不能为负）
+	int freeze;           //账户状态(0为可用1为冻结，默认为0)
+	struct atm * pnext;   //连接下一个
+}atm;
+struct atm * g_Head = NULL;//链表头指针
+struct atm * g_End = NULL; //链表尾指针
