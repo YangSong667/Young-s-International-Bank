@@ -1,0 +1,761 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<malloc.h>
+#include<windows.h>
+#include<string.h>
+#include<time.h>
+void loading()//虚假的加载界面
+{
+	int k=1;
+	for(;k<3;k++)
+	{
+		system("cls");
+		printf("|        请稍等.                                                     | \n");
+		printf("|        加载中:   --                                                | \n");
+		Sleep(200);system("cls");
+		printf("|        请稍等..                                                    | \n");
+		printf("|        加载中:   \\                                                | \n");
+		Sleep(200);system("cls");
+		printf("|        请稍等...                                                   | \n");
+		printf("|        加载中:   ||                                                | \n");
+		Sleep(200);system("cls");
+		printf("|        请稍等....                                                  | \n");
+		printf("|        加载中:   //                                                | \n");
+		Sleep(200);system("cls");
+		printf("|        请稍等.....                                                 | \n");
+		printf("|        加载中:   --                                                | \n");
+		Sleep(200);system("cls");
+		printf("|        请稍等......                                                | \n");
+		printf("|        加载中:   \\                                                | \n");
+		Sleep(200);system("cls");
+		printf("|        请稍等......                                                | \n");
+		printf("|        加载中:   ||                                                | \n");
+		Sleep(200);system("cls");
+		printf("|        请稍等......                                                | \n");
+		printf("|        加载中:   //                                                | \n");
+		Sleep(200);system("cls");
+	}
+}
+void show01()//登陆界面
+{
+	system("color F2");
+	printf("|****************************************************************************************| \n");Sleep(50);
+	printf(" _________________________________________________________________________________________\n");Sleep(50);
+	printf("|                     欢迎使用杨氏国际银行重工分行ATM自助存取款系统                      | \n");Sleep(50);
+	printf("|");printf("  ");system("date/t");
+	printf("|");printf("  ");system("time/t");
+}
+void show002()//输入账号界面
+{
+	printf("|请输入您的账户：                                                    | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show02()//输入密码界面
+{
+	printf("|请输入您的密码：                                                    | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show03()//管理员执行操作界面
+{
+	system("color AF");
+	printf("|           管理员信息录入及操作                                     |\n");Sleep(50);
+	printf("|欢迎：                                                              | \n");Sleep(50);
+	printf("|    Administrator/管理员                                            | \n");Sleep(50);
+	printf("|   请选择要执行的操作：                                             | \n");Sleep(50);
+	printf("|   【1】添加账户                                                    | \n");Sleep(50);
+	printf("|   【2】注销账户                                                    | \n");Sleep(50);
+	printf("|   【3】冻结或解冻账户                                              | \n");Sleep(50);
+	printf("|   【4】退出                                                        | \n");Sleep(50);
+	printf("|   【0】关闭ATM机                                                   | \n");Sleep(50);
+	printf("|   【10】查看所有用户情况                                           | \n");Sleep(50);
+
+}
+void show04()//用户执行操作界面
+{
+    system("color 90");
+	printf("|欢迎：                                                              | \n");Sleep(50);
+	printf("|     Admin/用户                                                     | \n");Sleep(50);
+	printf("|    请选择要执行的操作：                                            | \n");Sleep(50);
+	printf("|    【1】修改密码                                                   | \n");Sleep(50);
+	printf("|    【2】余额查询                                                   | \n");Sleep(50);
+	printf("|    【3】存款                                                       | \n");Sleep(50);
+	printf("|    【4】取款                                                       | \n");Sleep(50);
+	printf("|    【5】转账                                                       |\n");Sleep(50);
+	printf("|    【6】交易记录查询                                               |\n");Sleep(50);
+	printf("|    【7】退卡                                                       | \n");Sleep(50);
+	printf("|    【0】关闭ATM机                                                  | \n");Sleep(50);
+}
+void show05()
+{
+
+	printf("|   提示： 密码或账户名输入错误，请核对后重新输入                    | \n");Sleep(1000);                                        
+	printf("|          即将返回登陆界面                                          | \n");Sleep(5000);
+}
+void show06()
+{
+	printf("|    请输入新密码：                                                  | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show07()
+{
+	printf("|    请再输入一次新密码：                                            | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show08()
+{
+
+}
+void show09()
+{
+	printf("|   提示： 密码修改成功                                              | \n");Sleep(1000);  
+	printf("|          请输入7退卡后重试                                         | \n");Sleep(50);
+}
+void show10()//余额部分
+{ 
+	printf("|   已返回操作界面                                                   | \n");Sleep(50);
+	printf("|          请输入指令                                                | \n");Sleep(2000);
+}
+void show11()
+{
+	printf("|  提示：请放入钞票                                                  | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show12()
+{
+	printf("|        存入成功                                                    | \n");Sleep(50);
+	printf("|  提示: 请选择要执行的操作                                          | \n");Sleep(50);
+}
+void show13()
+{
+	printf("|  提示：请输入取款金额                                              | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show14()
+{
+	printf("|  提示：请输入要转账的用户名                                        | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show15()
+{
+	printf("|        转账完毕                                                    | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void show16()
+{
+	printf("|        转账失败                                                    | \n");Sleep(50);
+	printf("|        该用户不存在                                                | \n");Sleep(50);
+}
+void show17()
+{
+	printf("|      警告：您的帐户因为非法洗钱等违规操作已经被冻结                | \n");Sleep(50);
+	printf("|            请联系管理员解冻                                        | \n");Sleep(50);
+	printf("|            系统将于五秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于四秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于三秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于二秒钟后返回登陆界面                            | \n");Sleep(1000);
+	printf("|            系统将于一秒钟后返回登陆界面                            | \n");Sleep(1000);
+}
+void show18()
+{
+	printf("|        搜索失败                                                    | \n");Sleep(50);
+	printf("|        该用户不存在                                                | \n");Sleep(50);
+}
+typedef  struct atm  //节点结构体
+{
+	char name[20];        //用户名
+	char key[20];              //六位数的密码 
+	int money;            //余额（数值不能为负）
+	int freeze;           //账户状态(0为可用1为冻结，默认为0)
+	struct atm * pnext;   //连接下一个
+}atm;
+
+struct atm * g_Head = NULL;//链表头指针
+struct atm * g_End = NULL; //链表尾指针
+
+void add01()//管理员增加新用户 在链表中添加一个数据 从尾部添加
+{
+	char m[20],n[20];
+	atm * temp = (struct atm *)malloc(sizeof(struct atm));//创建一个节点
+	//节点成员进行赋值
+	struct atm * dtemp =g_Head;   //重新定义一个指针记住头
+	printf("|  提示：请分别输入您新建用户的账户名和账户密码                      | \n");Sleep(50);
+	scanf("%s %s",m ,n );
+	getchar();
+	while(dtemp!=NULL)
+	{
+		if(strcmp(dtemp->name,m)==0||strcmp("hp",m)==0)
+		{
+			printf("|      提示：用户注册失败                                    | \n");Sleep(50);
+			printf("|      原因：该帐户id已经被占用                              | \n");Sleep(50);
+			return ;
+		}
+		dtemp=dtemp->pnext ;
+	}
+	strcpy(temp->name ,m);
+	strcpy(temp->key  ,n);
+	temp->freeze =0;//可用状态为可用
+	temp->money  =0;//余额为0
+	temp->pnext =NULL;//指向空
+	if (NULL==g_Head||NULL==g_End)    //排除只有头尾的情况
+	{
+		g_Head = temp;              //链表为空，新节点即是头也是尾
+		g_End = temp;
+	}
+	else
+	{
+		g_End->pnext =temp;       //新节点下一个指向尾
+		g_End = temp;            //新节点变成尾
+	}
+	printf("|      提示：用户添加成功                                            | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+}
+void del()//管理员注销用户操作
+{
+	char i[20]={'0'};
+	struct atm *a;
+	//struct atm *atemp = g_Head;           //当前节点的上一个
+	//struct atm *btemp = atemp->pnext ;    //当前节点
+	//struct atm *ctemp = btemp->pnext ;    //当前节点的下一个
+	struct atm *first=g_Head ;      //冲在前面的指针
+	//struct atm *temp=g_End;             //cun
+	int sign=0;
+	printf("|        请输入要注销的账户名称：                                    | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+	scanf("%s",i);
+	getchar();
+
+	while(first!=NULL)
+	{
+		if(strcmp(first->name ,i)==0)
+		{
+			sign=1;
+			a->pnext=first->pnext;
+
+			break;
+		}
+		a=first;
+		first=first->pnext ;        //前仆后继
+	}
+	
+	if(sign!=0)
+	{
+		printf("|        提示：                                                  | \n");Sleep(50);
+		printf("|             用户注销成功                                       | \n");Sleep(50);
+		printf("|                                                                | \n");Sleep(50);
+	}
+	else
+	{
+		printf("|        提示：                                                  | \n");Sleep(50);
+		printf("|             用户注销失败                                       | \n");Sleep(50);
+		printf("|        原因：                                                  | \n");Sleep(50);
+		printf("|             该用户不存在                                       | \n");Sleep(50);
+	}
+	return ;
+}
+
+
+void freeze()//管理员冻结板块
+{
+	int i=-1;
+	char k[20];
+	struct atm * ctemp =g_Head;   //重新定义一个指针记住头
+	printf("|   请输入要冻结的账户名称                                           | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+	scanf("%s",k);
+	getchar();
+	while(ctemp!=NULL)
+	{
+		if((strcmp(k,ctemp->name)==0))
+		{
+			if(ctemp->freeze ==0)
+			{
+				printf("|   提示：该帐户当前状态为正常，是否冻结 ？              | \n");Sleep(50);
+				printf("|        【1】冻结该账户                                 | \n");Sleep(50);
+				printf("|        【2】放弃操作返回上一级                         | \n");Sleep(50);
+				scanf("%d",&i);
+				getchar();
+				switch(i)
+				{
+				case 1:ctemp->freeze =1;
+					printf("|   提示：操作成功                                   | \n");Sleep(50);
+					break;
+				case 2:break;
+				}
+			}
+			else
+			{
+				printf("|   提示：该帐户当前状态为冻结，是否解冻 ？              | \n");Sleep(50);
+				printf("|        【1】解冻该账户                                 | \n");Sleep(50);
+				printf("|        【2】放弃操作返回上一级                         | \n");Sleep(50);
+				scanf("%d",&i);
+				getchar();
+				switch(i)
+				{
+				case 1:ctemp->freeze =0;
+					printf("|   提示：操作成功                                   | \n");Sleep(50);
+					break;
+				case 2:break;
+				}
+			}
+		}	
+		if(ctemp==NULL)
+		{
+			printf("|   提示：该账户不存在                                       | \n");Sleep(50);
+			printf("|         请核对后再试                                       | \n");Sleep(50);
+		}
+		ctemp=ctemp->pnext ;
+	}
+	return ;
+}
+
+void choose(char m[20])//用户修改密码板块
+{
+	struct atm * atemp=g_Head;
+	char i[20],j[20];
+	show06();
+	scanf("%s",i);
+	getchar();
+	show07();
+	scanf("%s",j);
+	getchar();
+	if(strcmp(i,j)==0)
+	{
+		while(atemp!=NULL)
+		{
+			if(strcmp(atemp->name ,m)==0)
+			{
+				strcpy(atemp->key,i);//修改密码
+				show09();
+			}
+			atemp=atemp->pnext ;
+		}
+	}
+	else 
+	{
+		printf("|   提示： 修改密码操作中两次输入密码不一致                      | \n");Sleep(1000);  
+		printf("|          即将返回用户操作界面                                  | \n");Sleep(1000);
+		show04();
+	}
+}
+void look(char m[20])//用户余额查询板块
+{
+	struct atm * atemp=g_Head;
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name )==0)
+		{
+			printf("|   您好：                                                   | \n");Sleep(50);
+			printf("|       您的账户余额为：%d元                                 \n",atemp->money);Sleep(50);
+			printf("|                                                            | \n");Sleep(50);
+			show10();
+			break;
+		}
+		atemp=atemp->pnext ;
+	}
+}
+void in(char m[20])//用户存款操作
+{
+	struct atm * atemp=g_Head;
+	int i=-1,j=-1;
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name )==0)
+		{
+			show11();
+			scanf("%d",&i);
+			getchar();
+			atemp->money =atemp->money +i;
+			show12();
+			break;
+		}
+		atemp=atemp->pnext ;
+	}
+}
+void out(char m[20])//用户取款操作
+{
+	int i;
+	struct atm * atemp=g_Head;
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name)==0)
+		{
+			printf("%s",atemp->name);
+			show13();
+			scanf("%d",&i);
+			if(atemp->money<i)
+			{
+				printf("|        您的帐户余额不足，请您查询或存款后在进行此操作              | \n");Sleep(50);
+				printf("|                                                                    | \n");Sleep(50);
+				break;
+			}
+			if(atemp->money>=i)
+			{
+				atemp->money = atemp->money -i;	
+				printf("|        交易账单：                                                  | \n");Sleep(50);
+				printf("|        本次取款：%d元                                                \n",i);Sleep(50);
+				printf("|        帐户余额：%d元                                                \n",atemp->money );Sleep(50);
+				printf("|                                                                    | \n");Sleep(50);
+				printf("|        取钞完毕                                                    | \n");Sleep(50);
+				break;
+			}
+		}
+		atemp=atemp->pnext ;
+	}
+}
+void transform(char m[20])//用户转账操作
+{
+	char i[20];
+	int j;
+	struct atm * atemp=g_Head;
+	struct atm * btemp=g_Head;
+	show14();
+	scanf("%s",i);
+	getchar();
+	while(atemp!=NULL)
+	{
+		if(strcmp(m,atemp->name )==0)
+		{
+			while(btemp!=NULL)
+			{
+				if(strcmp(i,btemp->name )==0)
+				{
+					printf("|  提示：请输入转账的金额                                              | \n");Sleep(50);
+					printf("|                                                                      | \n");Sleep(50);
+					scanf("%d",&j);
+					getchar();
+					if(atemp->money >j||atemp->money ==j)
+					{
+						atemp->money =atemp->money -j;
+						btemp->money=btemp->money +j;
+						show15();
+						break;
+					}	
+					else
+					{
+						printf("|  提示：您的余额不足                                                | \n");Sleep(50);
+						printf("|        请存款或者输入较小的转账金额                                | \n");Sleep(50);
+						break;
+					}
+				}
+				btemp=btemp->pnext  ;
+			}
+			break;
+		}
+		atemp=atemp->pnext; 
+	}
+	if (atemp==NULL)//用户不存在的情况
+	{
+		show16();
+	}
+}
+void search()//用户交易记录查询
+{
+	printf("|    正在努力建设中：                                                | \n");Sleep(50);
+	printf("|                                                                    | \n");Sleep(50);
+
+}
+void savetofile()//保存信息进入文件
+{
+	FILE * pfile=NULL;
+	atm * temp=g_Head;
+	char strbuf[60]={0};
+	char strscore[5];
+	char strscore1[5];
+	if(g_Head==NULL)//判断链表是否为空
+	{
+		return ;
+	}
+	pfile=fopen("D:\\杨氏国际银行重工分行\\用户数据.xls","w+");	//打开文件,读写
+	if(pfile==NULL)
+	{
+		printf("  警告：文件丢失或不存在，请检查目录");
+		return;
+	}
+	while(temp!=NULL)//操作文件指针
+	{
+		strcpy(strbuf,temp->name );
+		strcat(strbuf,"账号\t");
+		strcat(strbuf,temp->key );
+		strcat(strbuf,"密码\t");
+		_itoa(temp->freeze,strscore,10);//将整型值转换为字符串,int十进制转化char
+		strcat(strbuf,strscore);
+		strcat(strbuf,"状态\t");
+		_itoa(temp->money,strscore1,10);
+		strcat(strbuf,strscore1);
+		strcat(strbuf,"余额\t");
+		fwrite(strbuf,1,strlen(strbuf),pfile);//将一个节点的所有信息转化成一个字符串
+		fwrite("\r\n",1,strlen("\r"),pfile);//每写完一个换行
+		temp=temp->pnext; 
+		strcat(strbuf,"%");
+	}
+	fclose(pfile);//关闭文件
+}
+
+void redfile()//读取文件
+{
+	//建立缓冲区
+	char message[10000];
+	char a1[100],a2[100],a3[100],a4[100],a6[]={"%"};
+	int i=0,j=0,k=0,l=0,m=0,o=0;
+	int tempmoney=0;            //余额（数值不能为负）
+	int tempfreeze=0;           //账户状态(0为可用1为冻结，默认为0)
+	FILE*pfile;
+	pfile=fopen("D:\\杨氏国际银行重工分行\\用户数据.xls","rb");
+	if(NULL==pfile)
+	{
+		printf("|  警告：保存用户数据的文件丢失或不存在                              | \n");Sleep(4000);
+		printf("|                                                                    | \n");Sleep(50);
+		return;
+	}
+	while(!feof(pfile))//FEOF是文件操作指针，当该指针指向文件尾部时（数据读取完）会返回1
+	{
+
+		fscanf(pfile,"%s",message);//fscanf可以将硬盘里的数据读取到内存中
+		strcpy(a1,"hp的账户,123456");
+		strcat(message,a6);
+		printf("原始数据是：%s\n",message);Sleep(50);
+		for(i=0;message[i]!='%';)
+		{
+			
+			atm * temp = (struct atm *)malloc(sizeof(struct atm));//创建一个节点
+			if(message[i]!='账号')
+			{
+				for(j=0;;j++,i++)
+				{
+					if(message[i]=='账号')
+					{
+						break;
+					}
+					a1[j]=message[i];
+				}
+				a1[j]='\0';
+			}
+			printf("用户账号是：%s\n",a1);Sleep(50);
+			i++;
+			if(message[i]!='密码')
+			{
+				for(k=0;;k++,i++)
+				{
+					if(message[i]=='密码')
+					{
+						break;
+					}
+					a2[k]=message[i];
+				}
+				a2[k]='\0';
+			}
+			printf("用户密码是：%s\n",a2);Sleep(50);
+			i++;
+			if(message[i]!='状态')
+			{
+				for(l=0;;l++,i++)
+				{
+					if(message[i]=='状态')
+					{
+						break;
+					}
+					a3[l]=message[i];
+				}
+				a3[l]='\0';
+			}
+			printf("用户状态是：%s\n",a3);Sleep(50);
+			i++;
+			if(message[i]!='余额')
+			{
+				for(m=0;;i++,m++)
+				{
+					if(message[i]=='余额')
+					{
+						break;
+					}
+					a4[m]=message[i];
+				}
+				a4[m]='\0';
+			}
+			i++;
+			printf("用户余额是：%s\n",a4);Sleep(50);
+			strcpy(temp->name ,a1);
+			strcpy(temp->key  ,a2);
+			temp->freeze =atoi(a3);
+			temp->money =atoi(a4);
+			temp->pnext =NULL;
+			if (NULL==g_Head||NULL==g_End)    //排除只有头尾的情况
+			{
+				g_Head = temp;              //链表为空，新节点即是头也是尾
+				g_End = temp;
+			}
+			else
+			{
+				g_End->pnext =temp;         //新节点下一个指向尾
+				g_End = temp;              //新节点变成尾
+			}
+		}
+		fclose(pfile);
+		break;
+	}
+}
+
+int check(char m[20],char n[20])//判断管理用户还是普通用户还是该用户不存在
+
+{	
+	struct atm * atemp =g_Head;   //重新定义一个指针记住头
+	if ((strcmp(m,"hp")==0)&&(strcmp(n,"123456")==0))//判断为管理员身份
+	{
+		return 1;
+	}
+	while(atemp!=NULL)
+	{
+		if(strcmp(atemp->name ,m)==0&&strcmp(atemp->key ,n)==0&&atemp->freeze ==0)//判断为普通用户
+		{
+			return 2;
+		}
+		if(strcmp(atemp->name ,m)==0&&strcmp(atemp->key ,n)==0&&atemp->freeze ==1)//判断为普通用户被冻结
+		{
+			return 4;
+		}
+		atemp=atemp->pnext; 
+	}
+	return 3;
+}
+void freelinklist()//释放链表
+{
+	struct atm * atemp = g_Head;
+	while(g_Head !=NULL)//在没有到达尾部的时候
+	{
+		atemp=g_Head;//记录下一节点
+		g_Head=g_Head->pnext ;//向后移动一个节点
+		free(atemp);//释放上一节点
+	}
+}
+void menu()//主菜单部分
+{
+	int i=-1;
+	char m[20],n[20];
+	system("color 0c");
+	redfile();//读取文件
+	loading();//虚假的加载界面
+	for(;;)
+	{	
+		show01();//显示登陆界面
+		show002();//显示输入账户界面
+		scanf("%s",m);
+		getchar();
+		show02();//显示输入密码界面
+		scanf("%s",n);
+		getchar();
+		if (check(m,n)==1)//判断为管理员身份
+		{
+			system("color 0a");
+			for(;;)
+			{
+				show03();//管理员执行操作界面
+				scanf("%d",&i);
+				getchar();
+				switch (i)
+				{
+				case 0:
+					break;
+				case 1:
+					add01();//管理员增加新用户 在链表中添加一个数据 从尾部添加
+					break;
+				case 2:
+					del();//管理员注销用户板块
+					break;
+				case 3:
+					freeze();//管理员冻结板块
+					break;
+				case 4://返回上一级
+					break;
+				case 10://打印一遍链表
+					{
+						struct atm * atemp=g_Head;
+						while(atemp!=NULL)
+						{
+							printf("用户账号:%s 用户密码：%s 用户状态：%d 用户余额：%d  \n",atemp->name ,atemp->key ,atemp->freeze ,atemp->money );
+							atemp=atemp->pnext ;
+						}
+						break;
+					}
+				}
+				if (i==4)
+				{
+					system("cls");
+					break;
+				}
+				if (i==0)
+				{
+					system("cls");
+					break;
+				}
+				savetofile();//保存信息进入文件
+			}
+		}
+		else if(check(m,n)==2)//判断为普通用户
+		{
+			system("color 0e");
+			show04();//用户执行操作界面
+			for(;;)
+			{
+				scanf("%d",&i);
+				getchar();
+				switch(i)
+				{
+				case 0:
+					break;
+				case 1:
+					choose(m);//用户修改密码板块
+					break;
+				case 2:
+					look(m);//用户余额查询板块
+					break;
+				case 3:
+					in(m);//用户存款操作
+					break;
+				case 4:
+					out(m);//用户取款操作
+					break;
+				case 5:
+					transform(m);//用户转账操作
+					break;
+				case 6:
+					search();//用户交易记录查询
+					break;
+				case 7://返回上一级
+					system("cls");
+					break;
+				}
+				if(i==7)
+				{
+					break;
+				}
+				if(i==0)
+				{
+					system("cls");
+					break;
+				}
+				savetofile();//保存信息进入文件
+			}
+		}
+		else if (check(m,n)==4)
+		{
+			show17();
+			system("cls");
+		}
+		else//判断为用户不存在
+		{
+			show05();
+			system("cls");
+		}
+		if(i==0)
+		{
+			break;
+		}
+	}
+}
+int main()
+{
+	menu();
+	freelinklist();
+	return 0;
+}
